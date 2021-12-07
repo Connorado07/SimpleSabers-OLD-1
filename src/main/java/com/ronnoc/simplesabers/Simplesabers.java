@@ -58,15 +58,36 @@ public class Simplesabers implements ModInitializer{
 
 
 	//Block Generation
+	//Overworld
 	private static ConfiguredFeature<?, ?> BLUE_ORE = Feature.ORE
 			.configure(new OreFeatureConfig(
-					new BlockMatchRuleTest(Blocks.STONE), // Base block is end stone in The End biomes
+					new BlockMatchRuleTest(Blocks.STONE),
 					SSBlocks.BLUE_ORE.getDefaultState(),
-					9))
+					3))
 			.range(new RangeDecoratorConfig(
-					UniformHeightProvider.create(YOffset.fixed(0), YOffset.fixed(70))))
+					UniformHeightProvider.create(YOffset.fixed(0), YOffset.fixed(45))))
 			.spreadHorizontally()
-			.repeat(20);
+			.repeat(2);
+	private static ConfiguredFeature<?, ?> GREEN_ORE = Feature.ORE
+			.configure(new OreFeatureConfig(
+					new BlockMatchRuleTest(Blocks.STONE),
+					SSBlocks.GREEN_ORE.getDefaultState(),
+					3))
+			.range(new RangeDecoratorConfig(
+					UniformHeightProvider.create(YOffset.fixed(0), YOffset.fixed(25))))
+			.spreadHorizontally()
+			.repeat(2);
+
+	//Nether
+	private static ConfiguredFeature<?, ?> RED_ORE = Feature.ORE
+			.configure(new OreFeatureConfig(
+					new BlockMatchRuleTest(Blocks.STONE),
+					SSBlocks.RED_ORE.getDefaultState(),
+					3))
+			.range(new RangeDecoratorConfig(
+					UniformHeightProvider.create(YOffset.fixed(0), YOffset.fixed(25))))
+			.spreadHorizontally()
+			.repeat(2);
 
 
 	@Override
@@ -126,8 +147,17 @@ public class Simplesabers implements ModInitializer{
 		RegistryKey<ConfiguredFeature<?, ?>> blue_ore = RegistryKey.of(net.minecraft.util.registry.Registry.CONFIGURED_FEATURE_KEY,
 				new Identifier("simplesabers", "blue_ore"));
 		net.minecraft.util.registry.Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, blue_ore.getValue(), BLUE_ORE);
-		BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(), GenerationStep.Feature.UNDERGROUND_ORES, blue_ore);
+		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, blue_ore);
+		RegistryKey<ConfiguredFeature<?, ?>> green_ore = RegistryKey.of(net.minecraft.util.registry.Registry.CONFIGURED_FEATURE_KEY,
+				new Identifier("simplesabers", "green_ore"));
+		net.minecraft.util.registry.Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, green_ore.getValue(), GREEN_ORE);
+		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, green_ore);
 
-		LOGGER.info("Mod Initialization Complete.");
+		RegistryKey<ConfiguredFeature<?, ?>> red_ore = RegistryKey.of(net.minecraft.util.registry.Registry.CONFIGURED_FEATURE_KEY,
+				new Identifier("simplesabers", "red_ore"));
+		net.minecraft.util.registry.Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, red_ore.getValue(), RED_ORE);
+		BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Feature.UNDERGROUND_ORES, red_ore);
+
+		LOGGER.info("Mod Initialization Confirmed, Captain.");
 	}
 }
