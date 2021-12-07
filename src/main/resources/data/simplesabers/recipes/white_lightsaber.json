@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "T",
+    "X"
+  ],
+  "key": {
+    "#": {
+      "item": "simplesabers:saber_upper_part"
+    },
+    "T": {
+      "item": "simplesabers:kyber_crystal_white"
+    },
+    "X": {
+      "item": "simplesabers:saber_lower_part"
+    }
+  },
+  "result": {
+    "item": "simplesabers:white_lightsaber",
+    "count": 1
+  }
+}

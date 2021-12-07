@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iii",
+    "ici",
+    "iii"
+  ],
+  "key": {
+    "i": {
+      "item": "simplesabers:durasteel_ingot"
+    },
+    "c": {
+      "item": "simplesabers:focus_crystal"
+    }
+  },
+  "result": {
+    "item": "simplesabers:saber_upper_part",
+    "count": 1
+  }
+}
